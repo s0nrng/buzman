@@ -12,7 +12,7 @@ function Header(){
     }
 
     const textStyle = {
-        fontSize: '2em',
+        fontSize: '3em',
         fontWeight: 600,
         margin: 0,
         marginLeft: '5%',

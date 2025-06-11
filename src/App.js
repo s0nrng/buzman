@@ -3,6 +3,14 @@ import React, {useState} from 'react';
 import OrderManagementTab from './Components/order_management/OrderManagementTab';
 
 function App() {
+  const backgroundStyle = {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'Gainsboro'
+  }
   const mainStyle = {
     position: 'absolute',
     width: '90vw',
@@ -14,7 +22,7 @@ function App() {
     maxWidth: '160vh',
     minWidth: 650,
     backgroundColor: 'white',
-    borderRadius: 5,
+    borderRadius: 10,
     boxShadow: '0px 0px 5px 5px rgba(0, 0, 0, 0.2)',
     display: 'flex', // optional,
     fontSize: 'clamp(8px, 1vw, 20px)'
@@ -27,15 +35,17 @@ function App() {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: 5,
+    borderRadius: 10,
     // backgroundColor: 'gray'
   }
   const [appState, setAppState] = useState('order');
   return (
+    <div style={backgroundStyle}>
     <div style={mainStyle}>
       <div style={childStyle}>
       {appState==='order'&& <OrderManagementTab/>}
       </div>
+    </div>
     </div>
   );
 }
