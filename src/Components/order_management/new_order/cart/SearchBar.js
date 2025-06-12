@@ -10,7 +10,7 @@ function SearchBar(){
         display: 'flex',
         flexDirection: 'column',
         boxShadow: '0px 0px 10px 0.3px rgba(0, 0, 0, 0.2)',
-        borderRadius: 5,
+        borderRadius: 10,
     }
     return(
         <div style={mainStyle}>

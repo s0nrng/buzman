@@ -1,5 +1,5 @@
-import React from 'react';
-import CustomerTab from './CustomerTab';
+import React, { useState } from 'react';
+import CustomerTab from './customer/CustomerTab';
 import CartTab from './cart/CartTab';
 import ConfirmButton from './button/ConfirmButton';
 import PrintButton from './button/PrintButton';
@@ -35,18 +35,30 @@ function NewOrderTab(){
         justifyContent: 'space-between'
     }
 
+    const [customer, setCustomer] = useState(null)
+    const [phone, setPhone] = useState(null)
+    const [address, setAddress] = useState(null)
+    const [products, setProducts] = useState(null)
+
     return (
         <div style={mainStyle}>
             <div style={rightStyle}>
-                <CustomerTab/>
+                <CustomerTab
+                    customer={customer}
+                    setCustomer={setCustomer}
+                    phone={phone}
+                    setPhone={setPhone}
+                    address={address}
+                    setAddress={setAddress}
+                />
                 <div style={buttonPanelStyle}>
                     <PrintButton/>
                     <ConfirmButton/>
                 </div>
             </div>
-            <CartTab/>
+            <CartTab products={products} setProducts={setProducts}/>
         </div>
-    );
+    )
 }
 
-export default NewOrderTab;
+export default NewOrderTab

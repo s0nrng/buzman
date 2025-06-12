@@ -20,7 +20,8 @@ function App() {
     top: '5vh',
     maxHeight: '90vh',
     maxWidth: '160vh',
-    minWidth: 650,
+    minWidth: 800,
+    minHeight: 450,
     backgroundColor: 'white',
     borderRadius: 10,
     boxShadow: '0px 0px 5px 5px rgba(0, 0, 0, 0.2)',
@@ -35,7 +36,7 @@ function App() {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: 10,
+    borderRadius: '1rem',
     // backgroundColor: 'gray'
   }
   const [appState, setAppState] = useState('order');

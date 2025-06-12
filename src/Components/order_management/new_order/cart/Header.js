@@ -5,9 +5,10 @@ function Header(){
         height: '50%',
         width: '100%',
         backgroundColor: 'black',
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-        paddingLeft:'1%',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        paddingLeft:'2%',
+        paddingRight: '2%',
         boxSizing: 'border-box'
     }
 
@@ -25,7 +26,9 @@ function Header(){
         justifyContent: 'center',
         height: '100%',
         fontWeight: 600,
-        fontSize: '1.1em'
+        fontSize: '1.1em',
+        boxSizing: 'border-box',
+        // border: '1px solid white'
     }
     
     return(

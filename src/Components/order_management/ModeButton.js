@@ -6,7 +6,7 @@ function ModeButton({name, mode, orderMode, setOrderMode}){
         backgroundColor: orderMode===mode ? 'black' : hovered ? 'lightgray' : 'transparent',
         height: '80%',
         width: '24%',
-        borderRadius: 20,
+        borderRadius: 25,
         position: 'relative',
         display: 'flex',
         alignItems: 'center',

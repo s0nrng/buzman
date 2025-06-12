@@ -45,6 +45,15 @@ input.custom-input {
   font-family: RedditSans, sans-serif;
 }
 
+.li-hover{
+  background-color: transparent;
+  cursor: default;
+}
+
+.li-hover:hover{
+  background-color: lightgray;
+  cursor: pointer;
+}
 
 .button {
   cursor: default

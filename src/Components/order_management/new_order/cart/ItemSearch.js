@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 
 function ItemSearch(){
     const [value, setValue] = useState('');
-
     const [nameChosen, setNameChosen] = useState('');
 
     // Only allow digits and at most one decimal point
@@ -19,8 +18,9 @@ function ItemSearch(){
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
         overflow: 'hidden',
-        paddingLeft:'1%',
-        boxSizing: 'border-box'
+        paddingLeft:'2%',
+        paddingRight: '2%',
+        boxSizing: 'border-box',
     }
 
     const liStyle={
@@ -40,24 +40,25 @@ function ItemSearch(){
         border: 'none',
         outline: 'none',
         boxSizing: 'border-box',
+        // border: '1px solid black'
     }
     
     return(
         <div style={mainStyle}>
             <div style={liStyle}>
-                <div style={{ textAlign: 'center', borderRight: '1px solid lightgray', width: '6%', ...cellStyle }}>0</div>
+                <div style={{ textAlign: 'center', width: '6%', ...cellStyle }}>0</div>
                 <input
                     className='custom-input'
                     placeholder='Tên sản phẩm...'
-                    style={{ paddingLeft: '1rem', paddingRight: '1rem', borderRight: '1px solid lightgray', width: '60%', ...cellStyle }}></input>
-                <div style={{ textAlign: 'center', textAlign: 'center',borderRight: '1px solid lightgray', width: '20%', ...cellStyle }}>Cái</div>
+                    style={{ paddingLeft: '1rem', paddingRight: '1rem', width: '60%', ...cellStyle }}></input>
+                <div style={{ textAlign: 'center', textAlign: 'center', width: '20%', ...cellStyle }}>Cái</div>
                 <input
                     className='custom-input'
                     placeholder='0'
                     value={value}
                     onChange={handleChange}
                     pattern="[0-9]*"
-                    style={{ textAlign: 'center', textAlign: 'center', borderRight: '1px solid lightgray', width: '5%', ...cellStyle }}
+                    style={{ textAlign: 'center', textAlign: 'center', width: '5%', ...cellStyle }}
                     type="text" 
                     onWheel={(e) => e.target.blur()}
                     onKeyDown={(e) => {

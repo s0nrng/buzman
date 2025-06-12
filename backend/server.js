@@ -7,7 +7,7 @@ const cors = require('cors');
 
 app.use(cors());
 // Open your SQLite DB from public/database folder
-const dbPath = path.resolve(__dirname, '../public/database/Business.db');
+const dbPath = path.resolve(__dirname, '../public/database/Customer.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
@@ -43,5 +43,5 @@ app.get('/customers/get', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Backend server listening at http://localhost:${port}`);
+    console.log(`Backend server listening at http://192.168.0.112:${port}`);
   });

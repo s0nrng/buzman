@@ -9,7 +9,7 @@ function PrintButton(){
         display:'flex',
         width: '29%',
         height: '100%',
-        borderRadius: 5,
+        borderRadius: 15,
         color: hovered ? 'black' : 'white',
         textAlign: 'center',
         justifyContent: 'center',

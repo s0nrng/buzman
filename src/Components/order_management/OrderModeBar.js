@@ -12,7 +12,7 @@ function OrderModeBar({orderMode, setOrderMode}){
         height: '6%',
         width: '40%',
         marginLeft: '3%',
-        borderRadius: 20,
+        borderRadius: 25,
         paddingLeft: '0.5%',
         paddingRight: '0.5%',
         boxShadow: '0px 0px 10px 0.3px rgba(0, 0, 0, 0.2)',

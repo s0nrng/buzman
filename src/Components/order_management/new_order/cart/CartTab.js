@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import CartContent from './CartContent';
 
-function CartTab(){
+function CartTab({products, setProducts}){
     const mainStyle = {
         position: 'relative',
         height: '100%',
