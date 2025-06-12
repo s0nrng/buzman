@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import CustomerInformation from './CustomerInformation';
 
 function CustomerTab(){
     const mainStyle = {
@@ -26,7 +27,7 @@ function CustomerTab(){
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        fontSize: '1.8em',
+        fontSize: '1.5em',
         fontWeight: 600
     }
 
@@ -34,6 +35,7 @@ function CustomerTab(){
         <div style={mainStyle}>
             <div style={headerStyle}>Thông tin khách hàng</div>
             <SearchBar/>
+            <CustomerInformation/>
         </div>
     );
 }

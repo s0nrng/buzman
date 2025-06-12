@@ -11,7 +11,7 @@ function SearchBar(){
         borderBottom: '1px solid lightgray',
         boxSizing: 'border-box',
         textAlign: 'center',
-        fontSize: '1.2em',
+        fontSize: '1.1em',
         paddingTop: 10,
         // fontStyle: 'italic'
         // backgroundColor: 'gray'
