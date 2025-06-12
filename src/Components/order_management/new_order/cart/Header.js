@@ -5,8 +5,10 @@ function Header(){
         height: '50%',
         width: '100%',
         backgroundColor: 'black',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        paddingLeft:'1%',
+        boxSizing: 'border-box'
     }
 
     const rowStyle={
@@ -23,7 +25,7 @@ function Header(){
         justifyContent: 'center',
         height: '100%',
         fontWeight: 600,
-        fontSize: '1.2em'
+        fontSize: '1.1em'
     }
     
     return(

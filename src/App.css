@@ -26,7 +26,23 @@
 
 
 body {
-  font-family: 'Reddit Sans', sans-serif;
+  font-family: Reddit Sans, sans-serif;
+}
+
+.text {
+  font-family: Reddit Sans, sans-serif;
+}
+
+input.custom-input::placeholder {
+  font-style: italic;
+  color: gray;
+  font-family: RedditSans, sans-serif;
+}
+
+input.custom-input {
+  font-style: normal;
+  color: black;
+  font-family: RedditSans, sans-serif;
 }
 
 

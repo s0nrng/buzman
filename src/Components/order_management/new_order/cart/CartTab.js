@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import CartContent from './CartContent';
 
 function CartTab(){
     const mainStyle = {
@@ -8,11 +9,13 @@ function CartTab(){
         width: '58%',
         marginLeft: '3%',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     }
     return(
         <div style={mainStyle}>
             <SearchBar/>
+            <CartContent/>
         </div>
     );
 }

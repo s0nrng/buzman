@@ -1,23 +1,21 @@
 import React from 'react';
-import Header from './Header';
-import ItemSearch from './ItemSearch';
 
-function SearchBar(){
+function CartContent(){
     const mainStyle = {
         position: 'relative',
         width: '100%',
-        height: '18%',
+        height: '80%',
         display: 'flex',
+        marginTop: '2%',
         flexDirection: 'column',
         boxShadow: '0px 0px 10px 0.3px rgba(0, 0, 0, 0.2)',
         borderRadius: 5,
     }
-    return(
+    return (
         <div style={mainStyle}>
-            <Header/>
-            <ItemSearch/>
+
         </div>
-    );
+    )
 }
 
-export default SearchBar;
+export default CartContent;

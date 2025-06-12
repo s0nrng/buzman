@@ -1,6 +1,8 @@
 import React from 'react';
 import CustomerTab from './CustomerTab';
 import CartTab from './cart/CartTab';
+import ConfirmButton from './button/ConfirmButton';
+import PrintButton from './button/PrintButton';
 
 function NewOrderTab(){
     const mainStyle = {
@@ -13,9 +15,35 @@ function NewOrderTab(){
         justifyContent: 'space-between'
     }
 
+    const rightStyle = {
+        position: 'relative',
+        backgroundColor: 'transparent',
+        height: '100%',
+        marginRight:'3%',
+        width: '35%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    }
+    
+    const buttonPanelStyle = {
+        position: 'relative',
+        height: '9%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    }
+
     return (
         <div style={mainStyle}>
-            <CustomerTab/>
+            <div style={rightStyle}>
+                <CustomerTab/>
+                <div style={buttonPanelStyle}>
+                    <PrintButton/>
+                    <ConfirmButton/>
+                </div>
+            </div>
             <CartTab/>
         </div>
     );
