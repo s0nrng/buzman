@@ -42,6 +42,31 @@ app.get('/customers/get', (req, res) => {
     });
 });
 
+app.get('/products/get', (req, res) => {
+    const nameQuery = req.query.name || ''; // get the 'name' query param, default empty string
+    const offset = parseInt(req.query.offset, 10) || 0;
+    const limit = parseInt(req.query.limit, 10) || 5;
+    // Use parameterized query with LIKE for partial match
+    const sql = `
+      SELECT * FROM Product
+      WHERE Name LIKE ?
+      ORDER BY Name ASC
+      LIMIT ?
+      OFFSET ?
+    `;
+  
+    // Wrap the nameQuery with % for partial matching
+    const param = `%${nameQuery}%`;
+  
+    db.all(sql, [param, limit, offset], (err, rows) => {
+        if (err) {
+            console.error('Query error:', err.message);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+        res.json(rows);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Backend server listening at http://192.168.0.112:${port}`);
   });

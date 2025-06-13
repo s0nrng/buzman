@@ -24,13 +24,18 @@
   color: white;
 }
 
+.container {
+  container-type: inline-size;
+  container-name: app-container;
+  font-size: clamp(8px, 1cqw, 20px);
+}
 
 body {
-  font-family: Reddit Sans, sans-serif;
+  font-family: "Reddit Sans", sans-serif;
 }
 
 .text {
-  font-family: Reddit Sans, sans-serif;
+  font-family: "Reddit Sans", sans-serif;
 }
 
 input.custom-input::placeholder {

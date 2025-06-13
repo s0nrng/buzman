@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
-class Product {
-    constructor(id, name, unit, noUnit) {
-        this.name = name;
-        this.unit = unit;
-        this.noUnit = noUnit
-    }
-}
-
-function CartContent(){
+function CartContent({products, setProducts}){
     const mainStyle = {
         position: 'relative',
         width: '100%',
@@ -22,25 +14,6 @@ function CartContent(){
         alignItems: 'center',
         justifyContent: 'center'
     }
-
-    const test_products = [
-        new Product(1, 'Tom cang xanh', 'kg', '2'),
-        new Product(2, 'Tom cang xanh', 'kg', '2'),
-        new Product(3, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-        new Product(4, 'Tom cang xanh', 'kg', '2'),
-    ]
-
-    const [products, setProducts] = useState(test_products)
 
     const ulStyle = {
         position: 'relative',
@@ -88,7 +61,13 @@ function CartContent(){
 
 
 
-    const [hoveredId, setHoveredId] = useState(null);
+    const [hoveredId, setHoveredId] = useState(null)
+
+    function handleDelete(index){
+        const updatedProducts = [...products]
+        updatedProducts.splice(index, 1)
+        setProducts(updatedProducts)
+    }
 
 
     return (
@@ -128,7 +107,8 @@ function CartContent(){
                                     className='button'
                                     style={{color: hoveredId===index ? 'black' : 'gray'}}
                                     onMouseEnter={()=>setHoveredId(index)}
-                                    onMouseLeave={()=>setHoveredId(null)}/>
+                                    onMouseLeave={()=>setHoveredId(null)}
+                                    onClick={()=>handleDelete(index)}/>
                         </div>
                     </li>
                 ))}

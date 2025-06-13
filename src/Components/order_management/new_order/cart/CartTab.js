@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SearchBar from './SearchBar';
 import CartContent from './CartContent';
+
+
 
 function CartTab({products, setProducts}){
     const mainStyle = {
@@ -12,10 +14,12 @@ function CartTab({products, setProducts}){
         flexDirection: 'column',
         justifyContent: 'space-between'
     }
+
+
     return(
         <div style={mainStyle}>
-            <SearchBar/>
-            <CartContent/>
+            <SearchBar products={products} setProducts={setProducts}/>
+            <CartContent products={products} setProducts={setProducts}/>
         </div>
     );
 }

@@ -10,7 +10,7 @@ function SearchBar({setCustomer,setPhone,setAddress}){
             return;
         }
         try{
-            const response = await fetch(`http://192.168.0.112:4000/customers/get?name=${encodeURIComponent(name)}&offset=0&limit=5`);
+            const response = await fetch(`http://localhost:4000/customers/get?name=${encodeURIComponent(name)}&offset=0&limit=5`);
             if (!response.ok) throw new Error("API error!");
             const data = await response.json();
             setSuggestions(data.slice(0, 5));
@@ -81,7 +81,10 @@ function SearchBar({setCustomer,setPhone,setAddress}){
     const liStyle = {
         paddingLeft: '5%',
         paddingRight: '5%',
-        height: '50%'
+        marginTop: 2.5,
+        marginBottom: 2.5,
+        borderRadius: 5,
+        // width: 1
     }
 
 

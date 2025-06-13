@@ -20,13 +20,13 @@ function App() {
     top: '5vh',
     maxHeight: '90vh',
     maxWidth: '160vh',
+    width: 'min(90vw, 160vh)',
     minWidth: 800,
     minHeight: 450,
     backgroundColor: 'white',
     borderRadius: 10,
     boxShadow: '0px 0px 5px 5px rgba(0, 0, 0, 0.2)',
     display: 'flex', // optional,
-    fontSize: 'clamp(8px, 1vw, 20px)'
   };
   const childStyle = {
     position: 'absolute',
@@ -42,7 +42,7 @@ function App() {
   const [appState, setAppState] = useState('order');
   return (
     <div style={backgroundStyle}>
-    <div style={mainStyle}>
+    <div className='container' style={mainStyle}>
       <div style={childStyle}>
       {appState==='order'&& <OrderManagementTab/>}
       </div>

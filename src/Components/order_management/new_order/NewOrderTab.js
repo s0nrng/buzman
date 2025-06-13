@@ -38,7 +38,8 @@ function NewOrderTab(){
     const [customer, setCustomer] = useState(null)
     const [phone, setPhone] = useState(null)
     const [address, setAddress] = useState(null)
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
+    const [clickable, setClickable] = useState(false)
 
     return (
         <div style={mainStyle}>

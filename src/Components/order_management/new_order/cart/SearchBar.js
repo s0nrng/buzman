@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import ItemSearch from './ItemSearch';
 
-function SearchBar(){
+function SearchBar({products, setProducts}){
     const mainStyle = {
         position: 'relative',
         width: '100%',
@@ -15,7 +15,7 @@ function SearchBar(){
     return(
         <div style={mainStyle}>
             <Header/>
-            <ItemSearch/>
+            <ItemSearch products={products} setProducts={setProducts}/>
         </div>
     );
 }
