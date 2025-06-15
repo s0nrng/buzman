@@ -46,6 +46,7 @@ function CustomerInformation({customer, phone, setPhone, address, setAddress}){
         fontSize: fontSize
     }
 
+
     return(
         <div style={mainStyle}>
             <div style={labelStyle}>

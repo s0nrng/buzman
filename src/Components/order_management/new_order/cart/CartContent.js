@@ -79,7 +79,7 @@ function CartContent({products, setProducts}){
                 }
                 `}
             </style>
-            <ul style={ulStyle}>
+            <ul style={ulStyle} key={products.length}>
                 {products.map((product, index) => (
                     <li key={index} style={liStyle}>
                         <div style={{width: '6%', justifyContent: 'center', ...cellStyle}}>{index + 1}</div>

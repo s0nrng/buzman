@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Header from './Header';
 import OrderModeBar from './OrderModeBar';
 import NewOrderTab from './new_order/NewOrderTab';
+import PlacedOrderTab from './placed_order/PlacedOrderTab';
 
 function OrderManagementTab(){
     const mainStyle = {
@@ -20,6 +21,7 @@ function OrderManagementTab(){
             <Header/>
             <OrderModeBar orderMode={orderMode} setOrderMode={setOrderMode}/>
             {orderMode==='new_order' && <NewOrderTab/>}
+            {orderMode==='placed_order' && <PlacedOrderTab/>}
         </div>
     );
 }

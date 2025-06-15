@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from './SearchBar';
 import CustomerInformation from './CustomerInformation';
 
@@ -31,6 +31,7 @@ function CustomerTab({phone, setPhone, customer, setCustomer, address, setAddres
         fontSize: '2em',
         fontWeight: 600
     }
+
 
     return (
         <div style={mainStyle}>

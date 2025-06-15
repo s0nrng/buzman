@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function SearchBar({setCustomer,setPhone,setAddress}){
+function SearchBar({setCustomer, phone,setPhone,setAddress}){
     const[query, setQuery] = useState('');
     const[suggestions, setSuggestions] = useState([]);
-
     async function fetchCustomers(name){
         if (!name){
             setSuggestions([]);
@@ -28,6 +27,13 @@ function SearchBar({setCustomer,setPhone,setAddress}){
         setPhone(customer.Phone);
         setAddress(customer.Address);
     }
+
+    // useEffect(() => {
+    //     if (customer) {
+    //         setPhone(customer.Phone || '');
+    //         setAddress(customer.Address || '');
+    //     }
+    // }, [customer]);
     
     function handleChange(e){
         const val = e.target.value;

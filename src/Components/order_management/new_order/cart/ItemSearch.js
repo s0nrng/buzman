@@ -7,6 +7,7 @@ function ItemSearch( {products, setProducts} ){
     const [query, setQuery] = useState('')
     const [unit, setUnit] = useState('')
     const [noUnit, setNoUnit] = useState(0)
+    const [id, setId] = useState(null)
 
     async function fetchProducts(name){
         if (!name){
@@ -29,13 +30,27 @@ function ItemSearch( {products, setProducts} ){
         setQuery(product.Name)
         setSuggestions([])
         setUnit(product.Unit)
+        setId(product.Id)
     }
 
-    function handleAddProduct(product){
+    function handleAddProduct(){
         if (!name || !unit || !noUnit) return
-        const addedProducts = [...products]
-        addedProducts.push({name, unit, noUnit})
-        setProducts(addedProducts) 
+        // const addedProducts = [...products]
+        // addedProducts.push({
+        //     id,
+        //     name,
+        //     unit,
+        //     noUnit
+        // })
+        // console.log(
+        //     addedProducts
+        // )
+        setProducts([...products, {
+            id,
+            name,
+            unit,
+            noUnit
+        }]) 
         setSuggestions([])
         setName('')
         setQuery('')

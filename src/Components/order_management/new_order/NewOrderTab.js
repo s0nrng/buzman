@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomerTab from './customer/CustomerTab';
 import CartTab from './cart/CartTab';
 import ConfirmButton from './button/ConfirmButton';
@@ -36,10 +36,19 @@ function NewOrderTab(){
     }
 
     const [customer, setCustomer] = useState(null)
-    const [phone, setPhone] = useState(null)
-    const [address, setAddress] = useState(null)
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
     const [products, setProducts] = useState([])
     const [clickable, setClickable] = useState(false)
+
+    useEffect(()=>{
+        // console.log({ customer, phone, address, products });
+        if (!customer || !phone || !address || products.length === 0){
+            setClickable(false)
+            return
+        }
+        setClickable(true);
+    }, [customer, phone, address, products])
 
     return (
         <div style={mainStyle}>
@@ -53,11 +62,11 @@ function NewOrderTab(){
                     setAddress={setAddress}
                 />
                 <div style={buttonPanelStyle}>
-                    <PrintButton/>
-                    <ConfirmButton/>
+                    {/* <PrintButton/> */}
+                    <ConfirmButton customer={customer} setCustomer={setCustomer} phone={phone} setPhone={setPhone} address={address} setAddress={setAddress} products={products} setProducts={setProducts} clickable={clickable}/>
                 </div>
             </div>
-            <CartTab products={products} setProducts={setProducts}/>
+            <CartTab customer={customer} setCustomer={setCustomer} phone={phone} setPhone={setPhone} address={address} setAddress={setAddress} products={products} setProducts={setProducts} />
         </div>
     )
 }
