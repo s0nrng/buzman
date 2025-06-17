@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 
-function Content(){
-    const [cartContent, setCartContent] = useState([])
+function Content({searchMode, cartContent, setCartContent, setEditMode, setSelectedOrder, setCustomer, setProducts}){
 
     const mainStyle = {
         position: 'relative',
@@ -52,6 +51,7 @@ function Content(){
     }
 
     useEffect(() => {
+        if (searchMode) return;
         const fetchOrders = () => {
             axios.get('http://localhost:4000/orders/get_top', {
                 params: { offset: 0, limit: 10 }
@@ -66,13 +66,55 @@ function Content(){
     
         // Clean up on unmount
         return () => clearInterval(interval);
-      }, []);
+    }, [searchMode]);
+
+    async function fetchCustomer(customerId){
+        try{
+            const res = await axios.get('http://localhost:4000/customers/get_by_id', {
+                params: {id : customerId}
+            })
+
+            return res.data
+        } catch (error){
+            console.error('Failed to fetch customer: ', error);
+            return null
+        }
+    }
+
+    async function fetchProducts(orderId){
+        if (!orderId) return
+        try{
+            const res = await axios.get('http://localhost:4000/orders/products_by_order', {
+                params: {orderId: orderId}
+            })
+            return res.data
+        } catch (error){
+            console.error('Failed to fecth products: ', error);
+            return []
+        }
+    }
+
+    async function handleSelect(order){
+        setSelectedOrder(order)
+        setEditMode(true)
+        try{
+            const [customer, products] = await Promise.all([
+                fetchCustomer(order.Customer),
+                fetchProducts(order.Id)
+            ])
+            setCustomer(customer)
+            setProducts(products)
+            // console.log(products)
+        } catch(error){
+            console.error("Error loading order details: ", error)
+        }
+    }
 
     return(
         <div style={mainStyle}>
             <ul style={ulStyle}>
                 {cartContent.map((order, index) =>(
-                    <li className='li-hover' key={order.Id} style={liStyle}>
+                    <li className='li-hover' key={order.Id} style={liStyle} onClick={()=>handleSelect(order)}>
                         <div style={{width: '12%', justifyContent:'center', paddingLeft:'2%', ...cellStyle}}>{index+1}</div>
                         <div style={{width: '34%', justifyContent:'center', ...cellStyle}}>#{order.Id}</div>
                         <div style={{width: '54%', justifyContent:'center', ...cellStyle}}>{order.Date}</div>

@@ -3,7 +3,7 @@ import Header from './Header';
 import Content from './Content';
 
 
-function OrderList(){
+function OrderList({cartContent, setCartContent, searchMode, setEditMode, setSelectedOrder, setCustomer, setProducts}){
     const mainStyle = {
         width: '100%',
         // backgroundColor: 'gray',
@@ -18,7 +18,7 @@ function OrderList(){
     return (
         <div style={mainStyle}>
             <Header/>
-            <Content/>
+            <Content searchMode={searchMode} cartContent={cartContent} setCartContent={setCartContent} setEditMode={setEditMode} setSelectedOrder={setSelectedOrder} setCustomer={setCustomer} setProducts={setProducts}/>
         </div>
     )
 }

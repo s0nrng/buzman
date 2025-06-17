@@ -3,7 +3,22 @@ import { FaSearch } from 'react-icons/fa';
 
 
 
-function SearchBar(){
+function SearchBar({setSearchMode, setCartContent}){
+    async function fetchOrders(orderId){
+        if (!orderId){
+            return
+        }
+        try{
+            const response = await fetch(`http://localhost:4000/orders/get?index=${encodeURIComponent(orderId)}&offset=0&limit=10`)
+            if (!response.ok) throw new Error ("API error!")
+            const data = await response.json()
+            setCartContent(data.slice(0,10))
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+
     const mainStyle = {
         width: '100%',
         height: '8%',
@@ -40,12 +55,23 @@ function SearchBar(){
         fontSize: '1.2em',
         boxSizing: 'border-box'
     }
+    
+    function handleChange(e){
+        const value = e.target.value
+        if (value===''){
+            setSearchMode(false)
+            return
+        }
+        setSearchMode(true)
+        fetchOrders(value)
+    }
 
     return (
         <div style={mainStyle}>
             <FaSearch style={iconStyle}/>
             <input
                 style = {textInputStyle}
+                onChange={(e)=>handleChange(e)}
                 placeholder={'Tìm kiếm mã đơn hàng...'}></input>
         </div>
     )

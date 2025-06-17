@@ -26,6 +26,7 @@ function App() {
     backgroundColor: 'white',
     borderRadius: 10,
     boxShadow: '0px 0px 5px 5px rgba(0, 0, 0, 0.2)',
+    fontSize:'2vmin',
     display: 'flex', // optional,
   };
   const childStyle = {

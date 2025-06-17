@@ -91,7 +91,7 @@ function CartContent({products, setProducts}){
                         value={product.noUnit}
                         onChange={(e) => handleNoUnitChange(e, index)}
                         pattern="[0-9]*"
-                        style={{ textAlign: 'center', textAlign: 'center', width: '5%', ...cellStyle }}
+                        style={{ textAlign: 'center', width: '5%', ...cellStyle }}
                         type="text" 
                         onWheel={(e) => e.target.blur()}
                         onKeyDown={(e) => {

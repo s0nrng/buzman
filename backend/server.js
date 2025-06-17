@@ -44,6 +44,62 @@ app.get('/customers/get', (req, res) => {
     });
 });
 
+app.get('/customers/get_by_id', (req, res) => {
+    const id = parseInt(req.query.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'Invalid or missing id parameter' });
+    }
+
+    const sql = `SELECT * FROM Customer WHERE Id = ?`;
+
+    db.get(sql, [id], (err, row) => {
+        if (err) {
+            console.error('Query error:', err.message);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        if (!row) {
+            return res.status(404).json({ error: 'Customer not found' });
+        }
+
+        // Slice the customer object (e.g., exclude sensitive fields if needed)
+        const { Id, Name, Phone, Address } = row; // adjust fields as needed
+        res.json({ Id, Name, Phone, Address });
+    });
+});
+
+app.get('/orders/products_by_order', (req, res) => {
+    const orderId = parseInt(req.query.orderId, 10);
+
+    if (isNaN(orderId)) {
+        return res.status(400).json({ error: 'Invalid or missing orderId' });
+    }
+
+    const sql = `
+      SELECT 
+        Product.Id AS ProductId,
+        Product.Name AS ProductName,
+        Product.PricePerUnit,
+        Product.Unit,
+        OrderHistory.NumUnitRequested,
+        OrderHistory.NumUnit
+      FROM OrderHistory
+      JOIN Product ON OrderHistory.ProductId = Product.Id
+      WHERE OrderHistory.OrderId = ?
+    `;
+
+    db.all(sql, [orderId], (err, rows) => {
+        if (err) {
+            console.error('Query error:', err.message);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        res.json(rows);
+    });
+});
+
+
 app.get('/orders/get', (req, res) => {
     const indexQuery = req.query.index || ''; 
     const offset = parseInt(req.query.offset, 10) || 0;
@@ -124,9 +180,9 @@ app.post('/orders/create', (req, res) => {
                     }
 
                     db.run(
-                        `INSERT INTO OrderHistory (NumUnit, OrderId, ProductId)
-                         VALUES (?, ?, ?)`,
-                        [item.NoUnit, orderId, item.ProductId],
+                        `INSERT INTO OrderHistory (NumUnitRequested, NumUnit, OrderId, ProductId)
+                         VALUES (?, ?, ?, ?)`,
+                        [item.NoUnit, item.NoUnit, orderId, item.ProductId],
                         function (err) {
                             if (err) {
                                 console.error('Failed to insert order history:', err.message);
