@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { FaTrash } from 'react-icons/fa';
 
 
 function Content({searchMode, cartContent, setCartContent, setEditMode, setSelectedOrder, setCustomer, setProducts}){
@@ -37,8 +38,8 @@ function Content({searchMode, cartContent, setCartContent, setEditMode, setSelec
         display: 'flex',
         flexDirection: 'row',
         color:'black',
-        borderBottom: '1px solid lightgray'
-
+        borderBottom: '1px solid lightgray',
+        alignItems:'center'
     }
 
     const cellStyle = {
@@ -53,8 +54,8 @@ function Content({searchMode, cartContent, setCartContent, setEditMode, setSelec
     useEffect(() => {
         if (searchMode) return;
         const fetchOrders = () => {
-            axios.get('http://localhost:4000/orders/get_top', {
-                params: { offset: 0, limit: 10 }
+            axios.get('http://localhost:4000/orders/get', {
+                params: { offset: 0, limit: 10, condition: 'đã lên' }
             })
             .then(res => setCartContent(res.data))
             .catch(err => console.error(err));
@@ -110,14 +111,40 @@ function Content({searchMode, cartContent, setCartContent, setEditMode, setSelec
         }
     }
 
+    async function cancelOrder(orderId){
+        if (!orderId) return
+        try{
+            const res = await axios.post('http://localhost:4000/orders/cancel', {
+                order: { Id: orderId }
+            });
+            alert("Huỷ đơn hàng thành công!")
+            return
+        } catch (error){
+            console.error("Network error:", error.message)
+            return
+        }
+    }
+
+    const [iconHoveredId, setIconHoveredId] = useState(null)
+
+    // const iconStyle = {
+    //     color:
+    // }
+
     return(
         <div style={mainStyle}>
             <ul style={ulStyle}>
                 {cartContent.map((order, index) =>(
                     <li className='li-hover' key={order.Id} style={liStyle} onClick={()=>handleSelect(order)}>
-                        <div style={{width: '12%', justifyContent:'center', paddingLeft:'2%', ...cellStyle}}>{index+1}</div>
-                        <div style={{width: '34%', justifyContent:'center', ...cellStyle}}>#{order.Id}</div>
+                        <div style={{width: '10%', justifyContent:'center', paddingLeft:'2%', ...cellStyle}}>{index+1}</div>
+                        <div style={{width: '24%', justifyContent:'center', ...cellStyle}}>#{order.Id}</div>
                         <div style={{width: '54%', justifyContent:'center', ...cellStyle}}>{order.Date}</div>
+                        <FaTrash
+                            className='button'
+                            style={{color: iconHoveredId===index ? 'black' : 'gray'}}
+                            onMouseEnter={()=>setIconHoveredId(index)}
+                            onMouseLeave={()=>setIconHoveredId(null)}
+                            onClick={()=>cancelOrder(order.Id)}/>
                     </li>
                 ))}
             </ul>

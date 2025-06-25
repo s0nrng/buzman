@@ -31,13 +31,19 @@ function Content({products, setProducts}){
         overflowX: 'auto',
         scrollbarWidth: 'none', 
         msOverflowStyle: 'none',
+        flexDirection: 'column',
+        display:'flex',
     }
-
     const liStyle = {
-        height: `${100 / 8}%`,
         display: 'flex',
+        flex: '0 0 12.5%', // flex-grow: 0, flex-shrink: 0, flex-basis: 12.5%
         borderBottom: '1px solid lightgray',
-        margin: 0
+        margin: 0,
+        boxSizing: 'border-box', 
+        transform: 'translateZ(0)', // Add this line
+        WebkitTransform: 'translateZ(0)', // For older Safari/Chrome
+        backfaceVisibility: 'hidden', // Can also help in some cases
+        WebkitBackfaceVisibility: 'hidden',
     }
 
     const cellStyle = {
@@ -65,6 +71,15 @@ function Content({products, setProducts}){
         }
     };
 
+    function handleNoUnitRequestedChange(e, index){
+        const input = e.target.value;
+        if (input === '' || /^[0-9]*\.?[0-9]*$/.test(input)) {
+            const updatedProducts = [...products]; // create a new array copy
+            updatedProducts[index] = { ...updatedProducts[index], NumUnitRequested: input };
+            setProducts(updatedProducts)
+        }
+    };
+
     const [hoveredId, setHoveredId] = useState(null)
 
     function handleDelete(index){
@@ -81,7 +96,22 @@ function Content({products, setProducts}){
                         <div style={{justifyContent: 'center',width: '6%', ...cellStyle}}>{index+1}</div>
                         <div style={{width: '53%', paddingLeft: '5%', paddingRight: '5%', ...cellStyle}}>{product.ProductName}</div>
                         <div style={{justifyContent: 'center', width: '20%', ...cellStyle}}>{product.Unit}</div>
-                        <div style={{justifyContent: 'center', width: '6%', ...cellStyle}}>{product.NumUnitRequested}</div>
+                        <input
+                            style={{justifyContent: 'center', textAlign:'center', width: '6%', ...cellStyle}}
+                            className='custom-input'
+                            placeholder={0}
+                            value={product.NumUnitRequested}
+                            onChange={(e)=>handleNoUnitRequestedChange(e, index)}
+                            pattern="[0-9]*"
+                            type="text"
+                            onWheel={(e) => e.target.blur()}
+                            onKeyDown={(e) => {
+                                // prevent scientific notation and other invalid chars
+                                if (['e', 'E', '+', '-'].includes(e.key)) {
+                                e.preventDefault();
+                                }}}
+                        ></input>
+                        {/* <div style={{justifyContent: 'center', width: '6%', ...cellStyle}}>{product.NumUnitRequested}</div> */}
                         <input
                             style={{justifyContent: 'center', textAlign:'center', width: '6%', ...cellStyle}}
                             className='custom-input'

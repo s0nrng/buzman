@@ -3,6 +3,8 @@ import Header from './Header';
 import OrderModeBar from './OrderModeBar';
 import NewOrderTab from './new_order/NewOrderTab';
 import PlacedOrderTab from './placed_order/PlacedOrderTab';
+import PackedOrderTab from './packed_order/PackedOrderTab';
+import FinishedOrderTab from './finished_order/FinishedOrderTab';
 
 function OrderManagementTab(){
     const mainStyle = {
@@ -22,6 +24,8 @@ function OrderManagementTab(){
             <OrderModeBar orderMode={orderMode} setOrderMode={setOrderMode}/>
             {orderMode==='new_order' && <NewOrderTab/>}
             {orderMode==='placed_order' && <PlacedOrderTab/>}
+            {orderMode==='packed_order' && <PackedOrderTab/>}
+            {orderMode==='finished_order' && <FinishedOrderTab/>}
         </div>
     );
 }

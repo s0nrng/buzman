@@ -25,7 +25,7 @@ function PlacedOrderTab(){
         <div style={mainStyle}>
             <OrderListTab setEditMode={setEditMode} setSelectedOrder={setSelectedOrder} setCustomer={setCustomer} setProducts={setProducts} products={products}/>
             {editMode&&
-            <EditTab customer={customer} setCustomer={setCustomer} selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={products} setProducts={setProducts}/>
+            <EditTab customer={customer} setCustomer={setCustomer} selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={products} setProducts={setProducts} setEditMode={setEditMode}/>
             }
         </div>
     )

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import EditCart from "./EditCart";
-
-function EditTab({setEditMode, selectedOrder, setSelectedOrder, customer, setSelectedCustomer, products, setProducts}){
+import ButtonPanel from "./buttons/ButtonPanel";
+function EditTab({selectedOrder, setSelectedOrder, customer, setCustomer, products, setProducts, setEditMode}){
     const mainStyle = {
         position: 'relative',
         width: '59%',
@@ -26,7 +26,7 @@ function EditTab({setEditMode, selectedOrder, setSelectedOrder, customer, setSel
         textAlign: 'center',
         fontSize: '2.5em',
         fontWeight: 500,
-        paddingTop: '2%'
+        paddingTop: '2%',
     }
 
     const customerInformationStyle = {
@@ -38,7 +38,8 @@ function EditTab({setEditMode, selectedOrder, setSelectedOrder, customer, setSel
         fontSize: '1em',
         flex:1,
         marginTop: '2%',
-        marginLeft: '3%'
+        marginLeft: '3%',
+        // backgroundColor: 'gray'
     }
     
 
@@ -59,6 +60,7 @@ function EditTab({setEditMode, selectedOrder, setSelectedOrder, customer, setSel
                     <p style={{margin:0}}>{selectedOrder.Address}</p>
                 </div>
             </div>
+            <ButtonPanel selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={products} setProducts={setProducts} customer={customer} setCustomer={setCustomer} setEditMode={setEditMode}/>
             <EditCart products={products} setProducts={setProducts}/>
         </div>
     )

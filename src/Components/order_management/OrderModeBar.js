@@ -25,7 +25,7 @@ function OrderModeBar({orderMode, setOrderMode}){
             <ModeButton name={"Đơn Mới"} mode={'new_order'} orderMode={orderMode} setOrderMode={setOrderMode}/>
             <ModeButton name={"Đã Lên"} mode={'placed_order'} orderMode={orderMode} setOrderMode={setOrderMode}/>
             <ModeButton name={"Đã Đóng"} mode={'packed_order'} orderMode={orderMode} setOrderMode={setOrderMode}/>
-            <ModeButton name={"Hoàn Thành"} mode={'finish_order'} orderMode={orderMode} setOrderMode={setOrderMode}/>
+            <ModeButton name={"Hoàn Thành"} mode={'finished_order'} orderMode={orderMode} setOrderMode={setOrderMode}/>
         </div>
     );
 }

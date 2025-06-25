@@ -12,7 +12,8 @@ function NewOrderTab(){
         position: 'relative',
         display: 'flex',
         flexDirection: 'row-reverse',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        // backgroundColor: 'gray'
     }
 
     const rightStyle = {

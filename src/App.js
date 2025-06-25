@@ -1,6 +1,9 @@
 import './App.css';
 import React, {useState} from 'react';
 import OrderManagementTab from './Components/order_management/OrderManagementTab';
+import ModeButtonPanel from './Components/mode_button_panel/ModeButtonPanel';
+import CustomerManagementTab from './Components/customer_management/CustomerManagementTab';
+import ProductManagementTab from './Components/product_management/ProductManagementTab';
 
 function App() {
   const backgroundStyle = {
@@ -26,7 +29,7 @@ function App() {
     backgroundColor: 'white',
     borderRadius: 10,
     boxShadow: '0px 0px 5px 5px rgba(0, 0, 0, 0.2)',
-    fontSize:'2vmin',
+    fontSize:'clamp(8px, 2vmin, 32px)',
     display: 'flex', // optional,
   };
   const childStyle = {
@@ -43,11 +46,14 @@ function App() {
   const [appState, setAppState] = useState('order');
   return (
     <div style={backgroundStyle}>
-    <div className='container' style={mainStyle}>
-      <div style={childStyle}>
-      {appState==='order'&& <OrderManagementTab/>}
+      <div className='container' style={mainStyle}>
+        <div style={childStyle}>
+        {appState==='order'&& <OrderManagementTab/>}
+        {appState==='customer'&& <CustomerManagementTab/>}
+        {appState==='product'&& <ProductManagementTab/>}
+        </div>
       </div>
-    </div>
+      <ModeButtonPanel setAppState={setAppState} appState={appState}/>
     </div>
   );
 }

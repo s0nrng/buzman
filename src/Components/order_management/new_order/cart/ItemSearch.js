@@ -35,16 +35,6 @@ function ItemSearch( {products, setProducts} ){
 
     function handleAddProduct(){
         if (!name || !unit || !noUnit) return
-        // const addedProducts = [...products]
-        // addedProducts.push({
-        //     id,
-        //     name,
-        //     unit,
-        //     noUnit
-        // })
-        // console.log(
-        //     addedProducts
-        // )
         setProducts([...products, {
             id,
             name,

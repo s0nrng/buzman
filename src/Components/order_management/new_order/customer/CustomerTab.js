@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import SearchBar from './SearchBar';
 import CustomerInformation from './CustomerInformation';
 
-
 function CustomerTab({phone, setPhone, customer, setCustomer, address, setAddress}){
     const mainStyle = {
         position: 'relative',
